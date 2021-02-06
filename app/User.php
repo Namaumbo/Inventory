@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+         'email', 
+         'password',
+         'first_name',
+         'last_name',
+         
     ];
 
     /**
@@ -39,14 +45,8 @@ class User extends Authenticatable
 public function address(){
     return $this->hasOne(addrees::class);
 }
-public function brand(){
-    return $this->hasOne(brands::class);
-}
-public function supplier(){
-    return $this->hasOne(supplier::class);
-}
-public function category(){
-    return $this->hasOne(categories::class)
+public function order(){
+return $this->hasMany(oders::class);
 }
 
 }

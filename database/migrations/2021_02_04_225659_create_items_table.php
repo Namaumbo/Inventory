@@ -14,7 +14,7 @@ class CreateItemsTable extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->increments('id')->first();
+            $table->increments('item_id')->first();
             $table->timestamp('created_at');
             $table->integer('quantity');
             $table->double('price')->after('name');
@@ -27,6 +27,7 @@ class CreateItemsTable extends Migration
             $table->integer('brand_id');
             $table->integer('category_id');
             $table->integer('supplier_id');
+            
             $table->foreign('brand_id')
             ->references('brand_id')
             ->on('brands')
