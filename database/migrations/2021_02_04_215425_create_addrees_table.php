@@ -19,12 +19,10 @@ class CreateAddreesTable extends Migration
             $table->string('T/A');
             $table->string('district');
             $table->string('country');
-            $table->integer('user_id');
-            // $table->foreign('user_id')->reference('id')->constrained();
+            $table->foreignId('user_id')->reference('id')->constrained();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

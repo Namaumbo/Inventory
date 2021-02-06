@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('phone_number');
             $table->boolean('isAdmin');
             $table->timestamps();
+            // $table->increments('brand_id');
+           
         });
     }
 

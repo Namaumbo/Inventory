@@ -24,6 +24,27 @@ class CreateItemsTable extends Migration
             $table->string('name')->after('id');
             $table->boolean('stockable');
             $table->timestamp('item_added_at')->nullable();
+            $table->integer('brand_id');
+            $table->integer('category_id');
+            $table->integer('supplier_id');
+            $table->foreign('brand_id')
+            ->references('brand_id')
+            ->on('brands')
+            ->onDelete('CASCADE')
+            ->onUpdate('CASCADE');
+
+              $table->foreign('category_id')
+              ->references('category_id')
+              ->on('categories')
+              ->onDelete('CASCADE')
+              ->onUpdate('CASCADE');
+
+               $table->foreign('supplier_id')
+               ->references('supplier_id')
+               ->on('suppliers')
+               ->onDelete('CASCADE')
+              ->onUpdate('CASCADE')
+               ;
         });
     }
 
