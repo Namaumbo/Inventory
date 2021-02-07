@@ -9,15 +9,18 @@ class item extends Model
     protected $guarded =[
 'id'
     ];
-    
 
-    public function brand(){
+
+    public function brand(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
         return $this->hasOne(brands::class);
     }
-    public function supplier(){
+    public function supplier(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
         return $this->hasOne(supplier::class);
     }
-    public function category(){
+    public function category(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
         return $this->hasOne(categories::class);
     }
 }
