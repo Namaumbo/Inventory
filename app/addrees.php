@@ -10,7 +10,7 @@ class addrees extends Model
 'user_id'
     ];
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }

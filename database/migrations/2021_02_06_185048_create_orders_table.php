@@ -14,7 +14,7 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            
+
             $table->id()->autoIncrement();
             $table->string('orderName');
             $table->integer('user_id');
@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->date('orderDate');
             $table->float('price');
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('item_id')->references('item_id')->on('items')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('id')->references('id')->on('items')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

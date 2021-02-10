@@ -18,11 +18,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-         'email', 
+         'email',
          'password',
          'first_name',
          'last_name',
-         
+
     ];
 
     /**
@@ -42,11 +42,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-public function address(){
+public function address(): \Illuminate\Database\Eloquent\Relations\HasOne
+{
     return $this->hasOne(addrees::class);
 }
-public function order(){
-return $this->hasMany(oders::class);
+public function order(): HasMany
+{
+return $this->hasMany(orders::class);
 }
 
 }

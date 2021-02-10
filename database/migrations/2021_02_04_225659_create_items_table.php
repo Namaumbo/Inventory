@@ -14,8 +14,8 @@ class CreateItemsTable extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->increments('item_id')->first();
-            $table->timestamp('created_at');
+            $table->id()->autoIncrement();
+            $table->timestamps();
             $table->integer('quantity');
             $table->double('price')->after('name');
             $table->string('color')->nullable();
@@ -23,16 +23,19 @@ class CreateItemsTable extends Migration
             $table->text('description')->nullable();
             $table->string('name')->after('id');
             $table->boolean('stockable');
-            $table->timestamp('item_added_at')->nullable();
-            $table->integer('brand_id');
-            $table->integer('category_id');
-            $table->integer('supplier_id');
-            
+
+
+//            foreign keys
+            $table->integer('brand_id')->nullable();
+            $table->integer('category_id') ->nullable();
+            $table->integer('supplier_id') ->nullable();;
+
             $table->foreign('brand_id')
             ->references('brand_id')
             ->on('brands')
             ->onDelete('CASCADE')
             ->onUpdate('CASCADE');
+
 
               $table->foreign('category_id')
               ->references('category_id')
@@ -44,8 +47,8 @@ class CreateItemsTable extends Migration
                ->references('supplier_id')
                ->on('suppliers')
                ->onDelete('CASCADE')
-              ->onUpdate('CASCADE')
-               ;
+              ->onUpdate('CASCADE');
+
         });
     }
 

@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class orders extends Model
 {
-public function user(){
+public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+{
     return $this->belongsTo(User::class);
 }
-public function item(){
+public function item(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+{
     return $this->belongsTo(items::class);
 }
 }
