@@ -16,9 +16,7 @@ class ItemController extends Controller
         $item-> vat= $request->vat;
         $item->  description= $request-> description;
         $item->stockable= $request->  stockable;
-        if($item  === item){
-            return ["we have it in database"];
-        }
+       
 
         if($item->save()){
             return response()->json(
