@@ -15,7 +15,7 @@ class itemsController extends Controller
      */
     public function index()
     {
-      return response()->json([item::all()]);
+      return response()->json(["items"=>item::all()]);
     }
 
 
@@ -37,6 +37,7 @@ class itemsController extends Controller
         $Newitem->  description= $request-> description;
         $Newitem->stockable= $request->  stockable;
 
+// checking if the product is in the database
         $Available  = item::where('name',"=", $request->input('name'))->first();
         if($Available){
           return  response()->json([

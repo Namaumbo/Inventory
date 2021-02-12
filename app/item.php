@@ -12,8 +12,10 @@ class item extends Model
     ];
 
     protected $cast=[
-        'quantity' => 'integer'
-    ];
+        'quantity' => 'integer',
+        'price' => 'integer',
+        'vat'=>'float',
+            ];
     /**
      * @var mixed
      */
