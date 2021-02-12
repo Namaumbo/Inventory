@@ -15,13 +15,13 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id()->autoIncrement();
+            $table->string('name');
             $table->timestamps();
             $table->integer('quantity');
             $table->double('price')->after('name');
             $table->string('color')->nullable();
             $table->double('vat');
             $table->text('description')->nullable();
-            $table->string('name')->after('id');
             $table->boolean('stockable');
 
 
