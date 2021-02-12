@@ -28,26 +28,34 @@ class itemsController extends Controller
     public function store(Request $request)
     {
 
-        $item = new item;
-        $item->name = $request->name;
-        $item->quantity = $request->quantity;
-        $item->price = $request->price;
-        $item-> color= $request->color;
-        $item-> vat= $request->vat;
-        $item->  description= $request-> description;
-        $item->stockable= $request->  stockable;
+        $Newitem = new item;
+        $Newitem->name = $request->name;
+        $Newitem->quantity = $request->quantity;
+        $Newitem->price = $request->price;
+        $Newitem-> color= $request->color;
+        $Newitem-> vat= $request->vat;
+        $Newitem->  description= $request-> description;
+        $Newitem->stockable= $request->  stockable;
 
-        try {
-            if ($item->save()){
-             return response()->json([
-                 "message"=>"success",
-                 "status" => "ok"
-             ],201)  ;
-            }
-        }catch(BadMessageException $ex){
+        $Available  = item::where('name',"=", $request->input('name'))->first();
+        if($Available){
+          return  response()->json([
+                "message"=>"already in the database",
+                "status"=>"401"
+            ],401);
+        }
+else {
+    try {
+        if ($Newitem->save()) {
+            return response()->json([
+                "message" => "success",
+                "status" => "ok"
+            ], 201);
+        }
+    } catch (BadMessageException $ex) {
 
-        };
-
+    };
+}
 
     }
 
