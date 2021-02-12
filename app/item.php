@@ -3,11 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Database\Eloquent\Relations\HasOne;
 
 class item extends Model
 {
     protected $guarded =[
 'id'
+    ];
+
+    protected $cast=[
+        'quantity' => 'integer'
     ];
     /**
      * @var mixed
@@ -39,16 +44,16 @@ class item extends Model
     private $name;
 
 
-    public function brand(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function brand(): HasOne
     {
         return $this->hasOne(brands::class);
     }
-    public function supplier(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function supplier(): HasOne
     {
         return $this->hasOne(supplier::class);
     }
-    public function category(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function category(): HasOne
     {
-        return $this->hasOne(categories::class);
+        return $this->hasOne(category::class);
     }
 }

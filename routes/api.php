@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/items','ItemController@addItem');
+Route::apiResource('items','itemsController');
 
 
