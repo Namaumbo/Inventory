@@ -46,6 +46,8 @@ class item extends Model
     private $name;
 
 
+
+
     public function brand(): HasOne
     {
         return $this->hasOne(brands::class);

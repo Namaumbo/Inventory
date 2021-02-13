@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\item;
+use http\Env\Response;
+use http\Exception\BadHeaderException;
 use http\Exception\BadMessageException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class itemsController extends Controller
@@ -11,9 +14,9 @@ class itemsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index():JsonResponse
     {
       return response()->json(["items"=>item::all()]);
     }
@@ -22,20 +25,20 @@ class itemsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
 
-        $Newitem = new item;
-        $Newitem->name = $request->name;
-        $Newitem->quantity = $request->quantity;
-        $Newitem->price = $request->price;
-        $Newitem-> color= $request->color;
-        $Newitem-> vat= $request->vat;
-        $Newitem->  description= $request-> description;
-        $Newitem->stockable= $request->  stockable;
+        $New_Item = new item;
+        $New_Item->name = $request->name;
+        $New_Item->quantity = $request->quantity;
+        $New_Item->price = $request->price;
+        $New_Item-> color= $request->color;
+        $New_Item-> vat= $request->vat;
+        $New_Item->  description= $request-> description;
+        $New_Item->stockable= $request->  stockable;
 
 // checking if the product is in the database
         $Available  = item::where('name',"=", $request->input('name'))->first();
@@ -47,7 +50,8 @@ class itemsController extends Controller
         }
 else {
     try {
-        if ($Newitem->save()) {
+        //saving to the database
+        if ($New_Item->save()) {
             return response()->json([
                 "message" => "success",
                 "status" => "ok"
@@ -70,29 +74,38 @@ else {
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
-    }
+        //entering the fields which needs to be edited
+        $requestedItem = item::find($id);
+        if($requestedItem){
+            $requestedItem->name = $request->name;
+            $requestedItem->quantity = $request->quantity;
+            $requestedItem->quantity = $request->quantity;
+            $requestedItem->price = $request->price;
+            $requestedItem-> color= $request->color;
+            $requestedItem-> vat= $request->vat;
+            $requestedItem->  description= $request-> description;
+            $requestedItem->stockable= $request-> stockable;
+        }
+            try {
+                if ($requestedItem->save()){
+                    return response()->json([
+                        "message" => "change done",
+                        "status" => "complete"
+                    ],201);
+                }
+            }catch(BadHeaderException $evt){};
+
+
+            }
 
     /**
      * Remove the specified resource from storage.
