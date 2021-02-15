@@ -20,7 +20,7 @@ class Address extends Migration
             $table->string('district');
             $table->string('country');
             $table->integer('user_id');
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
 

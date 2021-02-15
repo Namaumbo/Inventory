@@ -17,15 +17,19 @@ class CreateOrdersTable extends Migration
 
             $table->id()->autoIncrement();
             $table->string('orderName');
-            $table->integer('user_id');
-            $table->integer('item_id');
+
             $table->date('orderDate');
             $table->float('price');
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('id')->references('id')->on('items')->onUpdate('CASCADE')->onDelete('CASCADE');
+
+
+//            foreign keys
+            $table->integer('user_id');
+            $table->integer('item_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
+
+            $table->foreign('item_id')->references('id')->on('items')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
-
     /**
      * Reverse the migrations.
      *
