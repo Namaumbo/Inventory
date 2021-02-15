@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use http\Exception\BadHeaderException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -77,12 +78,39 @@ class UserController extends Controller
      *
      * @param Request $request
      * @param  int  $id
-     * @return Response
+     * @return JsonResponse
      */
-    public function update(Request $request, int $id): Response
+    public function update(Request $req, int $id): JsonResponse
     {
-        //
+        $wantedUser = User::find($id);
+        /// checking the legit user id input
+        if(is_null($wantedUser) || !$wantedUser){
+            return response()->json(["message"=>"no such user"],401);
+           /////////
+        }
+        else{
+                $wantedUser ->password = $req->password;
+                $wantedUser ->First_name = $req->First_name;
+                $wantedUser ->last_name = $req->last_name;
+                $wantedUser ->email = $req->email;
+                $wantedUser ->phone_number = $req->phone_number;
+                $wantedUser ->isAdmin = $req->isAdmin;
+                $wantedUser ->user_name = $req->user_name;
+            try {
+                if ($wantedUser->save()){
+                    return response()->json([
+                        "message" => "change done",
+                        "status" => "complete"
+                    ],201);
+                }
+            }catch(BadHeaderException $evt){};
+            }
+
+
+
     }
+
+
 
     /**
      * Remove the specified resource from storage.

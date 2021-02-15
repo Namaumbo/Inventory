@@ -78,6 +78,7 @@ else {
 
         }
         else{
+
             return response()->json(["message"=>"item not found"],401);
         }
 
@@ -97,6 +98,7 @@ else {
             return  response()->json(["message"=>" item not found"],401);
         }
         else{
+
             $requestedItem->name = $request->name;
             $requestedItem->quantity = $request->quantity;
             $requestedItem->quantity = $request->quantity;
