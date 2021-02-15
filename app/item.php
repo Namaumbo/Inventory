@@ -5,46 +5,33 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * @property mixed name
+ * @property mixed quantity
+ * @property mixed price
+ * @property mixed color
+ * @property mixed vat
+ * @property mixed description
+ * @property mixed stockable
+ */
 class item extends Model
 {
     protected $guarded =[
 'id'
     ];
+    protected $fillable=[
+        'description',
+        'vat',
+        'price',
+        'quantity',
+        'name'
+        ];
 
-    protected $cast=[
+    protected $casts=[
         'quantity' => 'integer',
-        'price' => 'integer',
-        'vat'=>'float',
+        'price' => 'double',
+        'vat'=>'double',
             ];
-    /**
-     * @var mixed
-     */
-    private $description;
-    /**
-     * @var mixed
-     */
-    private $stockable;
-    /**
-     * @var mixed
-     */
-    private $vat;
-    /**
-     * @var mixed
-     */
-    private $color;
-    /**
-     * @var mixed
-     */
-    private $price;
-    /**
-     * @var mixed
-     */
-    private $quantity;
-    /**
-     * @var mixed
-     */
-    private $name;
-
 
 
 

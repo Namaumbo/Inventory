@@ -22,4 +22,6 @@ Route::apiResource('brands','brandsController');
 
 Route::apiResource('items','itemsController');
 
+Route::apiResource('users','userController');
+
 

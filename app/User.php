@@ -7,6 +7,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property mixed first_name
+ * @property mixed name
+ * @property mixed password
+ * @property mixed last_name
+ * @property mixed email
+ * @property mixed phone_number
+ * @property mixed isAdmin
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -42,7 +51,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-public function address(): \Illuminate\Database\Eloquent\Relations\HasOne
+
+    public function address(): \Illuminate\Database\Eloquent\Relations\HasOne
 {
     return $this->hasOne(addrees::class);
 }

@@ -67,12 +67,20 @@ else {
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(int $id): JsonResponse
     {
-        //
+        $wantedItem = item::find($id);
+        if(($wantedItem)){
+            return response()->json(["item"=>$wantedItem]);
+
+        }
+        else{
+            return response()->json(["message"=>"item not found"],401);
+        }
+
     }
     /**
      * Update the specified resource in storage.
@@ -81,11 +89,14 @@ else {
      * @param int $id
      * @return JsonResponse
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): JsonResponse
     {
         //entering the fields which needs to be edited
         $requestedItem = item::find($id);
-        if($requestedItem){
+        if(!$requestedItem){
+            return  response()->json(["message"=>" item not found"],401);
+        }
+        else{
             $requestedItem->name = $request->name;
             $requestedItem->quantity = $request->quantity;
             $requestedItem->quantity = $request->quantity;
@@ -110,11 +121,22 @@ else {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): JsonResponse
     {
-        //
+        $unwantedItem = item::find($id);
+        if(is_null($unwantedItem)){
+          return  response()->json(["message"=>"not found"],401);
+        }
+        if(!$unwantedItem){
+            return response()->json(["message" => "no such item in the database"],401);
+        }
+        else{
+            $unwantedItem->delete();
+            return response()->json(["message"=>"items deleted successfully"],201);
+        }
+
     }
 }
