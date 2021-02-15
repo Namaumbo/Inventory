@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property mixed email
  * @property mixed phone_number
  * @property mixed isAdmin
+ * @property mixed First_name
  */
 class User extends Authenticatable
 {
@@ -29,7 +30,7 @@ class User extends Authenticatable
         'name',
          'email',
          'password',
-         'first_name',
+         'First_name',
          'last_name',
 
     ];

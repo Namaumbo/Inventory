@@ -35,20 +35,21 @@ class UserController extends Controller
         $newUser->email = $request->email;
         $newUser->phone_number = $request->phone_number;
         $newUser->isAdmin = $request->isAdmin;
+        $newUser->user_name = $request->user_name;
 
 
-//        $userInDatabase = user::where('email', '=', $request->input('email'))->first();
-//        if($userInDatabase){
-//            return response()->json(["message"=>"user in database"]);
-//        }
+        $userInDatabase = user::where('email', '=', $request->input('email'))->first();
+        if($userInDatabase){
+            return response()->json(["message"=>"user in database"]);
+        }
 //
-//        //        dataValidation
-//        $request = validator([
-//            'email' => 'required' | 'min = 5' | 'max=90',
-//            'first_name' => 'required' | 'min=3' | 'max=90',
-//            'last_name' => 'required' | 'min=3' | 'max=90',
+        //        dataValidation
+//        $request->validate([
+//            'email' => 'required',
+//            'first_name' => 'required',
+//            'last_name' => 'required' ,
 //            'isAdmin' => 'required',
-//            'password' => 'required' | 'min=6' | 'max=15'
+//            'password' => 'required'
 //        ]);
 
         if($newUser->save()){
