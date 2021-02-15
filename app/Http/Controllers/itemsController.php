@@ -21,7 +21,6 @@ class itemsController extends Controller
       return response()->json(["items"=>item::all()]);
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -30,7 +29,6 @@ class itemsController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-
         $New_Item = new item;
         $New_Item->name = $request->name;
         $New_Item->quantity = $request->quantity;
@@ -39,7 +37,6 @@ class itemsController extends Controller
         $New_Item-> vat= $request->vat;
         $New_Item->  description= $request-> description;
         $New_Item->stockable= $request->  stockable;
-
 // checking if the product is in the database
         $Available  = item::where('name',"=", $request->input('name'))->first();
         if($Available){
@@ -58,12 +55,9 @@ else {
             ], 201);
         }
     } catch (BadMessageException $ex) {
-
     };
 }
-
     }
-
     /**
      * Display the specified resource.
      *
@@ -116,10 +110,7 @@ else {
                     ],201);
                 }
             }catch(BadHeaderException $evt){};
-
-
             }
-
     /**
      * Remove the specified resource from storage.
      *

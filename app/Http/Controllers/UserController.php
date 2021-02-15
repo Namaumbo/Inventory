@@ -45,13 +45,13 @@ class UserController extends Controller
         }
 //
         //        dataValidation
-//        $request->validate([
-//            'email' => 'required',
-//            'first_name' => 'required',
-//            'last_name' => 'required' ,
-//            'isAdmin' => 'required',
-//            'password' => 'required'
-//        ]);
+        $request->validate([
+            'email' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required' ,
+            'isAdmin' => 'required',
+            'password' => 'required'
+        ]);
 
         if($newUser->save()){
             return response()->json(
@@ -66,17 +66,24 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return JsonResponse
      */
-    public function show(int $id): Response
+    public function show(int $id): JsonResponse
     {
-        //
+        $singleUser = User::find($id);
+
+        if($singleUser){
+            return response()->json(["user"=>$singleUser]);
+        }
+        if(is_null($singleUser)){
+            return  response()->json(["message"=>"no user found"]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param Request $req
      * @param  int  $id
      * @return JsonResponse
      */
@@ -88,38 +95,40 @@ class UserController extends Controller
             return response()->json(["message"=>"no such user"],401);
            /////////
         }
-        else{
-                $wantedUser ->password = $req->password;
-                $wantedUser ->First_name = $req->First_name;
-                $wantedUser ->last_name = $req->last_name;
-                $wantedUser ->email = $req->email;
-                $wantedUser ->phone_number = $req->phone_number;
-                $wantedUser ->isAdmin = $req->isAdmin;
-                $wantedUser ->user_name = $req->user_name;
+        else {
+            $wantedUser->password = $req->password;
+            $wantedUser->First_name = $req->First_name;
+            $wantedUser->last_name = $req->last_name;
+            $wantedUser->email = $req->email;
+            $wantedUser->phone_number = $req->phone_number;
+            $wantedUser->isAdmin = $req->isAdmin;
+            $wantedUser->user_name = $req->user_name;
             try {
-                if ($wantedUser->save()){
+                if ($wantedUser->save()) {
                     return response()->json([
                         "message" => "change done",
                         "status" => "complete"
-                    ],201);
+                    ], 201);
                 }
-            }catch(BadHeaderException $evt){};
-            }
-
-
-
+            } catch (BadHeaderException $evt) {
+            };
+        }
     }
-
-
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return JsonResponse
      */
-    public function destroy(int $id): Response
+    public function destroy(int $id): JsonResponse
     {
-        //
+        $unwantedUser= User::find($id);
+        if(is_null($unwantedUser)){
+            return response()->json(["message"=> "no such user "]);
+        }
+        else{
+            $unwantedUser->delete();
+            return response()->json(["message"=>"successfully deleted" ],201);
+        }
     }
 }
