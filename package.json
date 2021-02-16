@@ -20,7 +20,10 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "bootstrap-vue": "^2.21.2",
         "semantic": "0.0.1",
+        "semantic-ui-css": "^2.4.1",
+        "semantic-ui-vue": "^0.11.0",
         "ui": "^0.2.4",
         "vue": "^2.6.12",
         "vue-axios": "^3.2.4",
