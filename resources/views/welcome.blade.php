@@ -16,9 +16,9 @@
     <body>
     <div id="app">
         <div class="container-fluid">
-
+<Dashboard></Dashboard>
 {{--            <Items></Items>--}}
-            <Itemaddition></Itemaddition>
+{{--            <Itemaddition></Itemaddition>--}}
 {{-- <Example></Example>--}}
         </div>
     </div>

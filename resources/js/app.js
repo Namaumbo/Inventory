@@ -25,6 +25,7 @@ window.Vue = require('vue');
 Vue.component('Items', require('./components/Items.vue').default);
 Vue.component('Example', require('./components/Example.vue').default);
 Vue.component('Itemaddition', require('./components/Itemaddition.vue').default);
+Vue.component('Dashboard',require('./components/dashBoard.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -1,19 +1,24 @@
 <template>
+    <div class="fill">
+        <h4>Item Details</h4>
+
+        <hr />
     <form class="row g-3">
         <div class="col-md-6">
             <label for="inputEmail4" class="form-label">VENDOR</label>
-            <input type="email" class="form-control" id="inputEmail4"/>
+            <input type="text" class="form-control" id="inputEmail4"/>
         </div>
         <div class="col-md-6">
             <label for="inputPassword4" class="form-label">SUPPLIER</label>
             <input type="text" class="form-control" id="inputPassword4"/>
         </div>
+        <hr />
         <div class="col-6">
-            <label for="inputAddress" class="form-label"><b>PRODUCT NAME</b></label>
+            <label for="inputAddress" class="form-label">PRODUCT NAME</label>
             <input type="text" class="form-control" id="inputAddress" placeholder="snickers">
         </div>
         <div class="col-md-2">
-            <label for="cost" class="form-label" >COST</label>
+            <label for="cost" class="form-label" >PRICE</label>
             <input type="number" class="form-control" id="cost"/>
         </div>
         <div class="col-md-1">
@@ -22,12 +27,12 @@
         </div>
        <div class="col-md-1">
 
-            <label for="cost" class="form-label" >SUBTOTAL</label>
-            <input type="text" class="form-control" id="Total" value="0.00"/>
+            <label for="cost" class="form-label" >VAT</label>
+            <input type="number" class="form-control" id="Total" value="0.00"/>
 
            </div>
         <div class="col-md-1">
-            <label for="cost" class="form-label" >CHANGE &nbsp&nbsp&nbsp</label>
+            <label for="cost" class="form-label" >CHANGE &nbsp</label>
             <button
                    class="badge rounded-pill bg-info text-dark">
 
@@ -42,26 +47,28 @@
                 </svg>
             </button>
         </div>
-
-
+        <div><hr /></div>
         <div class="col-12">
             <label for="inputAddress2" class="form-label">DESCRIPTION</label>
             <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
         </div>
         <div class="col-md-6">
-            <label for="inputCity" class="form-label">
-                City</label>
-            <input type="text" class="form-control" id="inputCity">
+            <label  class="form-label">
+                BRAND</label>
+            <input type="text" class="form-control" id="inputbrand">
         </div>
         <div class="col-md-4">
-            <label for="inputState" class="form-label">State</label>
-            <select id="inputState" class="form-select">
-                <option selected>Choose...</option>
-                <option>...</option>
+            <label for="inputState" class="form-label">CATEGORY</label>
+            <br />
+            <select id="inputState" Class="form-control">
+                <option selected>BREAD </option>
+                <option>SHOE WARE</option>
+                <option>COMPUTER ACCESSORIES</option>
+
             </select>
         </div>
         <div class="col-md-2">
-            <label for="inputZip" class="form-label">Zip</label>
+            <label for="inputZip" class="form-label">COLOR</label>
             <input type="text" class="form-control" id="inputZip">
         </div>
         <div class="col-12">
@@ -94,6 +101,7 @@
                 &nbsp&nbsp&nbspCancel &nbsp&nbsp&nbsp&nbsp</button>
         </div>
     </form>
+    </div>
 </template>
 <script>
 function save(){
@@ -102,5 +110,8 @@ function save(){
 
 </script>
 <style>
-
+.fill{
+    border:  solid lightgrey .4px;
+    padding:10px
+}
 </style>
