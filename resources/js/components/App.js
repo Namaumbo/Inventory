@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Navigation from './Navigation';
+
 function App() {
     return (
-        <div className="container">
-        <Navigation/>
+        <div>
+            <Navigation />
         </div>
     );
 }
