@@ -1,6 +1,6 @@
 .cover{
     background-color: #f2f2f1;
-    width: 170px;
+    width: 160px;
     height:780px;
 }
 
@@ -16,6 +16,16 @@ list-style: none;
 }
 ul li{
     margin-bottom :25px;
-    font-weight:200
+}
+.innerLinks{
+    color:black;
+}
+/*.nav-link:hover{*/
+/*    background: darkblue;*/
+/*    color:white;*/
+/*}*/
+#pages{
+    margin-left: 10px;
+    margin-top:10px;
 }
 

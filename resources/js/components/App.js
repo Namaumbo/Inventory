@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Navigation from './Navigation';
 
+
 function App() {
     return (
+        <>
         <div>
-            <Navigation />
+            <div><Navigation /></div>
         </div>
+        </>
     );
 }
 
