@@ -6517,7 +6517,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".cover{\n    background-color: #f2f2f1;\n    width: 160px;\n    height:780px;\n}\n\n#line {\n    background-color: #b3b3b3;\n}\n.ina{\n    display: flex;\n}\n\nli{\nlist-style: none;\n}\nul li{\n    margin-bottom :25px;\n}\n.innerLinks{\n    color:black;\n}\n/*.nav-link:hover{*/\n/*    background: darkblue;*/\n/*    color:white;*/\n/*}*/\n#pages{\n    margin-left: 10px;\n    margin-top:10px;\n}\n\n", ""]);
+exports.push([module.i, ".cover{\n    background-color: #f2f2f1;\n    width: 160px;\n    height:780px;\n}\n\n#line {\n    background-color: #b3b3b3;\n}\n.ina{\n    display: flex;\n}\n\nli{\nlist-style: none;\n}\nul li{\n    margin-bottom :25px;\n}\n.innerLinks{\n    color:black;\n}\n/*.nav-link:hover{*/\n/*    background: darkblue;*/\n/*    color:white;*/\n/*}*/\n#pages{\n    margin-left: 10px;\n    margin-top:15px;\n}\n\n", ""]);
 
 // exports
 
@@ -70816,7 +70816,7 @@ function Navigation() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    "fill-rule": "evenodd",
+    fillRule: "evenodd",
     d: "M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"
@@ -70849,7 +70849,7 @@ function Navigation() {
     className: "bi bi-graph-up",
     viewBox: "0 0 16 16"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    "fill-rule": "evenodd",
+    fillRule: "evenodd",
     d: "M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"
   })), " ", "STATISTICS"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "pages"
@@ -71007,6 +71007,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _CSS_navBar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../CSS/navBar.css */ "./resources/js/components/CSS/navBar.css");
 /* harmony import */ var _CSS_navBar_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_CSS_navBar_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -71028,6 +71030,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function AddItem() {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState({
     productName: "",
@@ -71037,6 +71040,7 @@ function AddItem() {
     stock: "",
     description: "",
     picture: "",
+    vat: "",
     brand: "",
     category: "",
     color: ""
@@ -71051,7 +71055,15 @@ function AddItem() {
 
   function addToDatabase(e) {
     e.preventDefault();
-    console.log(JSON.stringify(state));
+    var NewProduct = {
+      productName: state.productName
+    };
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('api/items', NewProduct).then(function (response) {
+      console.log(response);
+    }); //
+    // catch{
+    //         console.log("sd")
+    // }
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -71116,12 +71128,12 @@ function AddItem() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "inputZip",
     className: "form-label"
-  }, "OPTION"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, "VAT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "form-control",
-    name: "option",
+    name: "vat",
     onChange: handleAllChange,
-    value: state.option
+    value: state.vat
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -71157,7 +71169,7 @@ function AddItem() {
     value: state.brand,
     className: "form-control"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    selected: true
+    defaultValue: true
   }, "NIKE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "PUMA"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "KUKOMA"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "CASTERED"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "ADIDAS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "SUMSUNG"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "HUAWEI"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "MIKOZI"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -71170,7 +71182,7 @@ function AddItem() {
     onChange: handleAllChange,
     value: state.category
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    selected: true
+    defaultValue: true
   }, "CAKES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "SALADS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "PHONE ACCESSORIES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "BOOKS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "BREAD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "VEGETABLES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "SHOES"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {

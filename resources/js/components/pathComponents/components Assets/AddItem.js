@@ -1,5 +1,6 @@
 import React from 'react';
 import navBar from '../../CSS/navBar.css'
+import  axios from  'axios'
 
 function AddItem (){
     const [state ,setState] = React.useState({
@@ -10,6 +11,7 @@ function AddItem (){
         stock:"",
         description:"",
         picture:"",
+        vat:"",
         brand:"",
         category:"",
         color:"",
@@ -24,7 +26,18 @@ setState({
 }
 function  addToDatabase(e){
         e.preventDefault()
-    console.log(JSON.stringify(state))
+    let NewProduct = {productName:state.productName}
+
+
+        axios.post('api/items', NewProduct
+        ).then(function (response){
+            console.log(response)
+        })
+    //
+    // catch{
+    //         console.log("sd")
+    // }
+
     }
 
         return (
@@ -51,8 +64,8 @@ function  addToDatabase(e){
                     <input type="number" className="form-control" name='stock' onChange={handleAllChange} value={state.stock}/>
                 </div>
                 <div className="col-md-2">
-                    <label htmlFor="inputZip" className="form-label">OPTION</label>
-                    <input type="text" className="form-control" name='option' onChange={handleAllChange} value={state.option}/>
+                    <label htmlFor="inputZip" className="form-label">VAT</label>
+                    <input type="text" className="form-control" name='vat' onChange={handleAllChange} value={state.vat}/>
                 </div>
                 <div className="col-12">
                     <label htmlFor="inputAddress2" className="form-label">DESCRIPTION</label>
@@ -66,7 +79,7 @@ function  addToDatabase(e){
                 <div className="col-md-2">
                     <label htmlFor="inputState" className="col-md-4">BRAND</label>
                     <select id="inputState"  name='brand' onChange={handleAllChange} value={state.brand} className="form-control">
-                        <option selected>NIKE</option>
+                        <option defaultValue>NIKE</option>
                         <option>PUMA</option>
                         <option>KUKOMA</option>
                         <option>CASTERED</option>
@@ -79,7 +92,7 @@ function  addToDatabase(e){
                 <div className="col-md-2">
                     <label htmlFor="inputState" className="col-md-4">CATEGORY</label>
                     <select id="inputState" className="form-control"  name='category' onChange={handleAllChange} value={state.category}>
-                        <option selected>CAKES</option>
+                        <option defaultValue>CAKES</option>
                         <option>SALADS</option>
                         <option>PHONE ACCESSORIES</option>
                         <option>BOOKS</option>

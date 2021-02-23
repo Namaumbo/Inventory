@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use http\Client\Response;
 use http\Exception\BadHeaderException;
-use http\Exception\BadMessageException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use App\brands;
+use App\category;
 
-class brandsController extends Controller
+
+
+class categoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +19,9 @@ class brandsController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json(brands::all());
+       return response()->json(["category" => category::all()]);
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -28,21 +30,21 @@ class brandsController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $New_brand = new brands();
-        $New_brand->name = $request->name;
-        $New_brand->address = $request->address;
+        $New_Category = new category;
+        $New_Category->categoryName = $request->categoryName;
+        $New_Category->description = $request->description;
 
-        $Available  = brands::where('name',"=", $request->input('name'))->first();
-        if($Available){
-            return  response()->json([
-                "message"=>"already in the database",
-                "status"=>"401"
-            ],401);
-        }
-        else {
+
+        $Available = category::where('categoryName', "=", $request->input('categoryName'))->first();
+        if ($Available) {
+            return response()->json([
+                "message" => "already in the database",
+                "status" => "401"
+            ], 401);
+        } else {
             try {
                 //saving to the database
-                if ($New_brand->save()) {
+                if ($New_Category->save()) {
                     return response()->json([
                         "message" => "success",
                         "status" => "ok"
@@ -61,9 +63,9 @@ class brandsController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $wantedBrand = brands::find($id);
-        if(($wantedBrand)){
-            return response()->json(["item"=>$wantedBrand]);
+        $wantedCategory = category::find($id);
+        if(($wantedCategory)){
+            return response()->json(["item"=>$wantedCategory]);
 
         }
         else{
@@ -79,20 +81,19 @@ class brandsController extends Controller
      * @param  int  $id
      * @return JsonResponse
      */
-    public function update(Request $request, $id): JsonResponse
+    public function update(Request $request, int $id): JsonResponse
     {
-        $requestedBrand = brands::find($id);
-        if(!$requestedBrand){
+        $New_Category = category::find($id);
+        if(!$New_Category){
             return  response()->json(["message"=>" item not found"],401);
         }
         else{
-
-            $requestedBrand->name = $request->name;
-            $requestedBrand->quantity = $request->quantity;
+           $New_Category->categoryName = $request->categoryName;
+          $New_Category->description = $request->description;
 
         }
         try {
-            if ($requestedBrand->save()){
+            if ($New_Category->save()){
                 return response()->json([
                     "message" => "change done",
                     "status" => "complete"
@@ -108,9 +109,9 @@ class brandsController extends Controller
      * @param  int  $id
      * @return JsonResponse
      */
-    public function destroy( int $id): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
-        $unwantedBrand = brands::find($id);
+        $unwantedBrand = category::find($id);
         if(is_null($unwantedBrand)){
             return  response()->json(["message"=>"not found"],401);
         }
@@ -123,4 +124,5 @@ class brandsController extends Controller
         }
 
     }
+
 }

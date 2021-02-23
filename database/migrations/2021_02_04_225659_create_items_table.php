@@ -27,24 +27,24 @@ class CreateItemsTable extends Migration
 
 //            foreign keys
             $table->integer('brand_id')->nullable();
-            $table->integer('category_id') ->nullable();
-            $table->integer('supplier_id') ->nullable();;
+            $table->integer('category_id')->nullable();
+            $table->integer('supplier_id')->nullable() ;;
 
             $table->foreign('brand_id')
-            ->references('brand_id')
+            ->references('id')
             ->on('brands')
             ->onDelete('CASCADE')
             ->onUpdate('CASCADE');
 
 
               $table->foreign('category_id')
-              ->references('category_id')
+              ->references('id')
               ->on('categories')
               ->onDelete('CASCADE')
               ->onUpdate('CASCADE');
 
                $table->foreign('supplier_id')
-               ->references('supplier_id')
+               ->references('id')
                ->on('suppliers')
                ->onDelete('CASCADE')
               ->onUpdate('CASCADE');

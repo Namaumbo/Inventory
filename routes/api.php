@@ -21,4 +21,5 @@ Route::apiResource('brands','brandsController');
 Route::apiResource('items','itemsController');
 Route::apiResource('users','userController');
 Route::apiResource('categories','categoryController');
-
+Route::apiResource('suppliers','supplierController');
+Route::apiResource('brands','brandsController');

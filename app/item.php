@@ -17,14 +17,18 @@ use \Illuminate\Database\Eloquent\Relations\HasOne;
 class item extends Model
 {
     protected $guarded =[
-'id'
+        'id',
+        'branch_id',
+        'supplier_id',
+        'category_id',
     ];
     protected $fillable=[
         'description',
         'vat',
         'price',
         'quantity',
-        'name'
+        'name',
+
         ];
 
     protected $casts=[
@@ -32,7 +36,18 @@ class item extends Model
         'price' => 'double',
         'vat'=>'double',
             ];
-
+    /**
+     * @var mixed
+     */
+    private $brand_id;
+    /**
+     * @var mixed
+     */
+    private $category_id;
+    /**
+     * @var mixed
+     */
+    private $supplier_id;
 
 
     public function brand(): HasOne

@@ -6,10 +6,10 @@ use http\Exception\BadHeaderException;
 use http\Exception\BadMessageException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\supplier;
 use Illuminate\Http\Response;
-use App\brands;
 
-class brandsController extends Controller
+class supplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class brandsController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json(brands::all());
+        return response()->json(["suppliers"=>supplier::all()]);
     }
     /**
      * Store a newly created resource in storage.
@@ -28,21 +28,22 @@ class brandsController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $New_brand = new brands();
-        $New_brand->name = $request->name;
-        $New_brand->address = $request->address;
+        $New_supplier = new supplier;
+        $New_supplier->address = $request->address;
+        $New_supplier->phoneNumber = $request->phoneNumber;
+        $New_supplier->email = $request->email;
+        $New_supplier->name = $request->name;
 
-        $Available  = brands::where('name',"=", $request->input('name'))->first();
-        if($Available){
-            return  response()->json([
-                "message"=>"already in the database",
-                "status"=>"401"
-            ],401);
-        }
-        else {
+        $Available = supplier::where('name', "=", $request->input('name'))->first();
+        if ($Available) {
+            return response()->json([
+                "message" => "already in the database",
+                "status" => "401"
+            ], 401);
+        } else {
             try {
                 //saving to the database
-                if ($New_brand->save()) {
+                if ($New_supplier->save()) {
                     return response()->json([
                         "message" => "success",
                         "status" => "ok"
@@ -50,6 +51,7 @@ class brandsController extends Controller
                 }
             } catch (BadMessageException $ex) {
             };
+
         }
     }
 
@@ -59,15 +61,13 @@ class brandsController extends Controller
      * @param  int  $id
      * @return JsonResponse
      */
-    public function show(int $id): JsonResponse
+    public function show( int $id): JsonResponse
     {
-        $wantedBrand = brands::find($id);
-        if(($wantedBrand)){
-            return response()->json(["item"=>$wantedBrand]);
-
+        $wantedSupplier = supplier::find($id);
+        if(($wantedSupplier)){
+            return response()->json(["item"=>$wantedSupplier]);
         }
         else{
-
             return response()->json(["message"=>"item not found"],401);
         }
     }
@@ -81,25 +81,24 @@ class brandsController extends Controller
      */
     public function update(Request $request, $id): JsonResponse
     {
-        $requestedBrand = brands::find($id);
-        if(!$requestedBrand){
+        $requestedSupplier = supplier::find($id);
+        if(!$requestedSupplier){
             return  response()->json(["message"=>" item not found"],401);
         }
         else{
 
-            $requestedBrand->name = $request->name;
-            $requestedBrand->quantity = $request->quantity;
-
-        }
+            $requestedSupplier->address= $request->address;
+            $requestedSupplier->phoneNumber = $request->phoneNumber;
+            $requestedSupplier->email = $request->email;
+    }
         try {
-            if ($requestedBrand->save()){
+            if ($requestedSupplier->save()){
                 return response()->json([
                     "message" => "change done",
                     "status" => "complete"
                 ],201);
             }
         }catch(BadHeaderException $evt){};
-
     }
 
     /**
@@ -110,17 +109,18 @@ class brandsController extends Controller
      */
     public function destroy( int $id): JsonResponse
     {
-        $unwantedBrand = brands::find($id);
-        if(is_null($unwantedBrand)){
+        $unwantedItem = supplier::find($id);
+        if(is_null($unwantedItem)){
             return  response()->json(["message"=>"not found"],401);
         }
-        if(!$unwantedBrand){
+        if(!$unwantedItem){
             return response()->json(["message" => "no such item in the database"],401);
         }
         else{
-            $unwantedBrand->delete();
+            $unwantedItem->delete();
             return response()->json(["message"=>"items deleted successfully"],201);
         }
 
     }
+
 }
