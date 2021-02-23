@@ -22,28 +22,28 @@ class CreateItemsTable extends Migration
             $table->string('color')->nullable();
             $table->double('vat');
             $table->text('description')->nullable();
-            $table->boolean('stockable');
+//            $table->boolean('stockable')->nullable();
 
 
 //            foreign keys
-            $table->integer('brand_id')->nullable();
-            $table->integer('category_id')->nullable();
-            $table->integer('supplier_id')->nullable() ;;
+            $table->integer('brandId')->nullable();
+            $table->integer('categoryId')->nullable();
+            $table->integer('supplierId')->nullable() ;;
 
-            $table->foreign('brand_id')
+            $table->foreign('brandId')
             ->references('id')
             ->on('brands')
             ->onDelete('CASCADE')
             ->onUpdate('CASCADE');
 
 
-              $table->foreign('category_id')
+              $table->foreign('categoryId')
               ->references('id')
               ->on('categories')
               ->onDelete('CASCADE')
               ->onUpdate('CASCADE');
 
-               $table->foreign('supplier_id')
+               $table->foreign('supplierId')
                ->references('id')
                ->on('suppliers')
                ->onDelete('CASCADE')

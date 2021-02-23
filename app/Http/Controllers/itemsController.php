@@ -30,16 +30,15 @@ class itemsController extends Controller
     public function store(Request $request): JsonResponse
     {
         $New_Item = new item;
-        $New_Item->name = $request->name;
-        $New_Item->quantity = $request->quantity;
-        $New_Item->price = $request->price;
-        $New_Item-> color= $request->color;
-        $New_Item-> vat= $request->vat;
-        $New_Item->  description= $request-> description;
-        $New_Item->stockable= $request->  stockable;
-        $New_Item->brand_id= $request-> brand_id;
-        $New_Item->category_id= $request-> category_id;
-        $New_Item->supplier_id= $request-> supplier_id;
+        $New_Item->name = $request->get("name");
+        $New_Item->quantity = $request->get("quantity");
+        $New_Item->price = $request->get("price");
+        $New_Item-> color= $request->get("color");
+        $New_Item-> vat= $request->get("vat");
+        $New_Item->  description= $request->get("description");
+        $New_Item->brandId= $request-> get("brandId");
+        $New_Item->categoryId= $request-> get("categoryId");
+        $New_Item->supplierId= $request-> get("supplierId");
 // checking if the product is in the database
         $Available  = item::where('name',"=", $request->input('name'))->first();
         if($Available){

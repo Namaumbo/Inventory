@@ -15,7 +15,7 @@ function Navigation(){
             <div className="ina">
             <div>
             <nav className="cover">
-                        <line><img src={logo} width="160" height="40" alt='logo'/></line>
+                        <img src={logo} width="160" height="40" alt='logo'/>
                 <br /><br />
                 <ul className="nav flex-column nav-pills">
                 <li className="nav-item "><Link to="/" className="nav-link active"  data-toggle="" >

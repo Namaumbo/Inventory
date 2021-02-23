@@ -18,9 +18,9 @@ class item extends Model
 {
     protected $guarded =[
         'id',
-        'branch_id',
-        'supplier_id',
-        'category_id',
+        'branchId',
+        'supplierId',
+        'categoryId',
     ];
     protected $fillable=[
         'description',
@@ -39,15 +39,15 @@ class item extends Model
     /**
      * @var mixed
      */
-    private $brand_id;
+    private $brandId;
     /**
      * @var mixed
      */
-    private $category_id;
+    private $categoryId;
     /**
      * @var mixed
      */
-    private $supplier_id;
+    private $supplierId;
 
 
     public function brand(): HasOne

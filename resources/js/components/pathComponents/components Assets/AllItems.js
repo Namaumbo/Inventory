@@ -1,9 +1,23 @@
-import React from 'react';
+import React,{Component} from 'react';
 
 
-function AllItems(){
-    return(
-        <div>Hello itemss</div>
-    )
+// componentDidMount(){
+//
+// }
+
+class AllItems extends React.Component{
+    render(){
+        return(
+            <div>erw</div>
+        )
+    }
+
 }
 export default AllItems;
+
+
+// function AllItems(){
+//     return(
+//         <></>    )
+// }
+

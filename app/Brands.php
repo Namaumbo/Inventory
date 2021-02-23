@@ -9,6 +9,10 @@ class brands extends Model
      * @var mixed
      */
     protected $name;
+
+//    protected $hidden=[
+//        'id'
+//    ];
     /**
      * @var mixed
      */
