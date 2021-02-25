@@ -5,6 +5,9 @@ import AllItems from "./pathComponents/components Assets/AllItems";
 import RemoveItem from "./pathComponents/components Assets/RemoveItem";
 import EditItem from "./pathComponents/components Assets/EditItem";
 import innerNav from './CSS/innerNav.css'
+import AddBrandAndCategory from "./pathComponents/components Assets/AddBrandAndCategory";
+
+
 function InnerNavbar(){
     return (
         <>
@@ -23,6 +26,9 @@ function InnerNavbar(){
                <li className="nav-link">
                    <Link to="/editItem">EDIT ITEM</Link>
                </li>
+               <li className="nav-link">
+                   <Link to="/addFields">ADD CATEGORY&BRAND</Link>
+               </li>
            </ul>
        </div>
             <div>
@@ -30,6 +36,7 @@ function InnerNavbar(){
                 <Route  path="/addItem" component={AddItem}/>
                 <Route  path="/removeItem" component={RemoveItem}/>
                 <Route  path="/editItem" component={EditItem}/>
+                <Route  path="/addFields" component={AddBrandAndCategory}/>
             </div>
             </Router>
         </>

@@ -7,14 +7,14 @@ function AddItem (){
         name:"",
         vendor:"",
         price:"",
-        // stockable:"",
         description:"",
         vat:"",
         supplierId:"",
         brandId:"",
         categoryId:"",
         color:"",
-        quantity:""
+        quantity:"",
+
     })
 
 function handleAllChange(e){
@@ -26,8 +26,7 @@ setState({
 }
 function  addToDatabase(e){
         e.preventDefault()
-    let NewProduct = {state}
-    //////////resolving the ids
+
     //////////adding to  the database///////////////////
         axios.post('/api/items', state).then(response =>{
             alert("item has been saved successfully")
@@ -39,6 +38,8 @@ function  addToDatabase(e){
     ////////////////////////////////////////////////////////////
         return (
             <>
+                <div className="card w-90">
+                    <div className="card-body">
             <form className="row g-3">
                 <div className="col-md-6">
                     <label htmlFor="inputEmail4" className="form-label">PRODUCT NAME</label>
@@ -78,7 +79,7 @@ function  addToDatabase(e){
                 {/*    <input type="file" className="form-control"  name='picture' onChange={handleAllChange} value={state.picture}/>*/}
                 {/*</div>*/}
                 <div className="col-md-2">
-                    <label htmlFor="inputState" className="col-md-4">BRAND</label>
+                    <label htmlFor="inputState" className="col-md-6">BRAND</label>
                     <select id="inputState"  name='brandId' onChange={handleAllChange} value={state.brandId} className="form-control">
                         <option defaultValue>1</option>
                         <option>2</option>
@@ -87,7 +88,7 @@ function  addToDatabase(e){
                     </select>
                 </div>
                 <div className="col-md-2">
-                    <label htmlFor="inputState" className="col-md-4">CATEGORY</label>
+                    <label htmlFor="inputState" className="col-md-8">CATEGORY</label>
                     <select id="inputState" className="form-control"  name='categoryId' onChange={handleAllChange} value={state.categoryId}>
                         <option defaultValue>1</option>
                         <option>2</option>
@@ -106,6 +107,7 @@ function  addToDatabase(e){
                     <button type="submit" className="btn btn-secondary">Cancel</button>
                 </div>
             </form>
+                    </div></div>
         </>
 )
 }

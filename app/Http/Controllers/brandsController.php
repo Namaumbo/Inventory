@@ -29,10 +29,10 @@ class brandsController extends Controller
     public function store(Request $request): JsonResponse
     {
         $New_brand = new brands();
-        $New_brand->name = $request->name;
+        $New_brand->brandName = $request->brandName;
         $New_brand->address = $request->address;
 
-        $Available  = brands::where('name',"=", $request->input('name'))->first();
+        $Available  = brands::where('brandName',"=", $request->input('brandName'))->first();
         if($Available){
             return  response()->json([
                 "message"=>"already in the database",
@@ -63,12 +63,12 @@ class brandsController extends Controller
     {
         $wantedBrand = brands::find($id);
         if(($wantedBrand)){
-            return response()->json(["item"=>$wantedBrand]);
+            return response()->json(["brand"=>$wantedBrand]);
 
         }
         else{
 
-            return response()->json(["message"=>"item not found"],401);
+            return response()->json(["message"=>"brand not found"],401);
         }
     }
 
@@ -87,8 +87,8 @@ class brandsController extends Controller
         }
         else{
 
-            $requestedBrand->name = $request->name;
-            $requestedBrand->quantity = $request->quantity;
+            $requestedBrand->brandName = $request->name;
+            $requestedBrand->address = $request->address;
 
         }
         try {

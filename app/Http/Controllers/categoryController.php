@@ -31,8 +31,8 @@ class categoryController extends Controller
     public function store(Request $request): JsonResponse
     {
         $New_Category = new category;
-        $New_Category->categoryName = $request->categoryName;
-        $New_Category->description = $request->description;
+        $New_Category->categoryName = $request->get("categoryName");
+        $New_Category->description = $request->get("description");
 
 
         $Available = category::where('categoryName', "=", $request->input('categoryName'))->first();

@@ -2,7 +2,7 @@ import React from 'react'
 
 function RemoveItem(){
     return(
-        <di>ello from delete item</di>
+        <>ello</>
     )
 }
 export default RemoveItem;
