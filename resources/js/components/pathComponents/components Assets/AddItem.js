@@ -26,7 +26,6 @@ setState({
 }
 function  addToDatabase(e){
         e.preventDefault()
-
     //////////adding to  the database///////////////////
         axios.post('/api/items', state).then(response =>{
             alert("item has been saved successfully")

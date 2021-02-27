@@ -1,15 +1,9 @@
 import React, { useState} from 'react';
 import  axios from 'axios'
-
-
-
-
-
-function addToDatabaseBrand() {
-
-}
-
-
+import {toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
+import {Link} from "react-router-dom";
+import Navigation from "../../Navigation";
 
 function AddBrandAndCategory(){
 
@@ -28,17 +22,52 @@ function AddBrandAndCategory(){
             ...categoryState,
             [e.target.name]:e.target.value
         })
+            setBrand({
+                ...brandState,
+                [e.target.name]:e.target.value
+            })
     }
     function addToDatabaseCategory(e) {
         e.preventDefault()
         ///getting only Category fields to the database////////
-        console.log(categoryState)
+        axios.post('/api/categories',categoryState).then(res=>{
+            if(res.status === 201){
+            toast.success("Category Added",
+                {position:toast.POSITION.TOP_CENTER,
+                    autoClose:2000
+            })
 
-        axios.post('/api/categories',{categoryState}).then(res=>{
-            console.log(res.data)
+            }
+            if(res.status===501){
+                toast.success("Category Added",
+                    {position:toast.POSITION.TOP_CENTER,
+                        autoClose:2000
+                    })
+            }
         }).catch(error=>{
             console.log(error)
         })
+    }
+
+    function addToDatabaseBrand(evt) {
+        evt.preventDefault();
+        axios.post('/api/brands',brandState).then(res=>{
+            if(res.status === 201) {
+                toast.success("Brand Added",
+                    {
+                        position: toast.POSITION.TOP_CENTER,
+                        autoClose: 2000
+                    })
+            }
+            else if(res.status === 201){
+                alert("ok")
+            }
+
+            }
+            ).catch(error=>{
+                console.log(error)
+        })
+
     }
 
 
@@ -47,7 +76,7 @@ function AddBrandAndCategory(){
             <div>
             <div className="card w-150">
                 <div className="card-body">
-                    <div>
+          <div>
             <form>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">NAME</label>
@@ -61,17 +90,16 @@ function AddBrandAndCategory(){
                     <label htmlFor="exampleInputPassword1">ADDITION</label>
                     <input type="text" className="form-control"  />
                 </div>
-
                 <button type="submit" className="btn btn-primary" onClick={addToDatabaseCategory}>Add Category</button>
             </form>
-                </div>
+          </div>
                 </div>
             </div>
                     {/*//////////////////////////////////////////////////////////*/}
                     <hr />
             <div className="card w-150">
                 <div className="card-body">
-                    <div>
+                <div>
                         <form>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">NAME</label>

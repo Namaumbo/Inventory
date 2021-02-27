@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use http\Client\Response;
 use http\Exception\BadHeaderException;
+use http\Exception\BadMessageException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\category;
@@ -34,17 +35,17 @@ class categoryController extends Controller
         $New_Category->categoryName = $request->get("categoryName");
         $New_Category->description = $request->get("description");
 
-
         $Available = category::where('categoryName', "=", $request->input('categoryName'))->first();
         if ($Available) {
             return response()->json([
                 "message" => "already in the database",
                 "status" => "401"
             ], 401);
-        } else {
+        }
+        else {
             try {
-                //saving to the database
-                if ($New_Category->save()) {
+               ///// saving to the database
+              if($New_Category->save())  {
                     return response()->json([
                         "message" => "success",
                         "status" => "ok"

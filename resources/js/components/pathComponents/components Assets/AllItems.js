@@ -3,40 +3,28 @@ import axios from 'axios'
 
 
 function AllItems(){
-    const [state ,setState] = React.useState({
-        items: {},
-    })
+    const [state ,setItems] = React.useState([])
 
     useEffect(() => {
-        getAllItems()
-    }, [])
-    // upon loading///////////////////////
-
-
-    function getAllItems() {
-        axios.get('/api/items').then(response => {
-            showItems(response.data)
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-
-////////////////////////////////////////////
-    ///////////////// setting all data state
-    function showItems(data) {
-       // const itemsInArray= state.items.slice();
-       // itemsInArray.push(data)
-        setState(prevState =>({
-            ...state,
-            items: {data},
-        }))
-console.log(state.items)
-    }
+        async  function getAllItems(){
+          const request = await axios.get('/api/items') ;
+          setItems(request.data.items);
+          return request;
+        }
+        getAllItems().then(response=>console.log(response.status));
+    }, ['/api/items'])
+    console.log(state)
 
     /////////////////////////////
     return(
         <>
-            <div><h3></h3></div>
+            <div>
+                {
+                    state.map(items=><div key={items.id}>{items.name}</div>)
+                }
+
+
+            </div>
         </>
     )
 }
