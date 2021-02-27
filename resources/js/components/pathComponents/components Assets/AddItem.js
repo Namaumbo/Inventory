@@ -1,6 +1,7 @@
 import React from 'react';
 import navBar from '../../CSS/navBar.css'
 import  axios from  'axios'
+import {toast} from "react-toastify";
 
 function AddItem (){
     const [state ,setState] = React.useState({
@@ -28,9 +29,17 @@ function  addToDatabase(e){
         e.preventDefault()
     //////////adding to  the database///////////////////
         axios.post('/api/items', state).then(response =>{
-            alert("item has been saved successfully")
+            if(response.status=== 201)
+            {toast.success("ITEM SAVED SUCCESSFULLY",{position : toast.POSITION.TOP_CENTER,
+                autoClose:2000}
+            )}
         }).catch(error =>{
-            console.log(error.data)
+
+            if (error){
+                toast.error("Oooops we have that in the database please check!",{position:toast.POSITION.TOP_CENTER,
+                autoClose:false
+                })
+            }
     })
 
     }
