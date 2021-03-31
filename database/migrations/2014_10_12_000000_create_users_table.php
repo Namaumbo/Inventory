@@ -17,14 +17,14 @@ class CreateUsersTable extends Migration
             $table->id()->autoIncrement();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->unique();
             $table->rememberToken();
-            $table->string('user_name')->unique();
-            $table->string('First_name');
-            $table->string('last_name');
-            $table->string('middle_name')->nullable();
-            $table->string('phone_number')->nullable()->unique();
-            $table->boolean('isAdmin');
+            $table->string('userName')->unique();
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('middleName')->nullable();
+            $table->string('phoneNumber')->nullable()->unique();
+            $table->string('Role');
             $table->timestamps();
 
         });

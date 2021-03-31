@@ -16,7 +16,6 @@ function AddBrandAndCategory(){
         address:"",
         brandName:""
     })
-
     function handleChange(e) {
         setCategory({
             ...categoryState,
@@ -36,19 +35,14 @@ function AddBrandAndCategory(){
                 {position:toast.POSITION.TOP_CENTER,
                     autoClose:2000
             })
-
-            }
-            if(res.status===501){
-                toast.success("Category Added",
-                    {position:toast.POSITION.TOP_CENTER,
-                        autoClose:2000
-                    })
             }
         }).catch(error=>{
-            console.log(error)
+            toast.error("Ooops! already exists",
+                {position:toast.POSITION.TOP_CENTER,
+                    autoClose:false
+                })
         })
     }
-
     function addToDatabaseBrand(evt) {
         evt.preventDefault();
         axios.post('/api/brands',brandState).then(res=>{
@@ -56,16 +50,15 @@ function AddBrandAndCategory(){
                 toast.success("Brand Added",
                     {
                         position: toast.POSITION.TOP_CENTER,
-                        autoClose: 2000
+                        autoClose:2000
                     })
             }
-            else if(res.status === 201){
-                alert("ok")
-            }
-
             }
             ).catch(error=>{
-                console.log(error)
+            toast.error("Oops! Brand already exits",
+                {position:toast.POSITION.TOP_CENTER,
+                    autoClose:false
+                })
         })
 
     }

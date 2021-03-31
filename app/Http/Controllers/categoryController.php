@@ -59,12 +59,12 @@ class categoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $categoryName
      * @return JsonResponse
      */
-    public function show(int $id): JsonResponse
+    public function show($categoryName): JsonResponse
     {
-        $wantedCategory = category::find($id);
+        $wantedCategory = category::find($categoryName);
         if(($wantedCategory)){
             return response()->json(["item"=>$wantedCategory]);
 
@@ -79,18 +79,18 @@ class categoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param $categoryName
      * @return JsonResponse
      */
-    public function update(Request $request, int $id): JsonResponse
+    public function update(Request $request, $categoryName): JsonResponse
     {
-        $New_Category = category::find($id);
+        $New_Category = category::find($categoryName);
         if(!$New_Category){
             return  response()->json(["message"=>" item not found"],401);
         }
         else{
-           $New_Category->categoryName = $request->categoryName;
-          $New_Category->description = $request->description;
+           $New_Category->categoryName = $request->get("categoryName");
+          $New_Category->description = $request->get("description");
 
         }
         try {
@@ -107,12 +107,12 @@ class categoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param $categoryName
      * @return JsonResponse
      */
-    public function destroy(int $id): JsonResponse
+    public function destroy($categoryName): JsonResponse
     {
-        $unwantedBrand = category::find($id);
+        $unwantedBrand = category::find($categoryName);
         if(is_null($unwantedBrand)){
             return  response()->json(["message"=>"not found"],401);
         }

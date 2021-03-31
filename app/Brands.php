@@ -3,24 +3,20 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed brandName
+ * @property mixed address
+ */
+
 class brands extends Model
 {
+    protected $primaryKey = 'brandName';
+    public $incrementing = false;
 
-
-    protected $hidden=[
-        'id'
-    ];
-    /**
-     * @var mixed
-     */
-    protected $address;
     protected $fillable =[
         'brandName','address'
     ];
-    /**
-     * @var mixed
-     */
-    private $brandName;
+
 
     public function item(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

@@ -8,14 +8,14 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property mixed first_name
- * @property mixed name
  * @property mixed password
- * @property mixed last_name
+ * @property mixed lastName
  * @property mixed email
- * @property mixed phone_number
- * @property mixed isAdmin
- * @property mixed First_name
+ * @property mixed phoneNumber
+ * @property mixed middleName
+ *@property mixed firstName
+ * @property mixed userName
+ * @property mixed Role
  */
 class User extends Authenticatable
 {
@@ -30,8 +30,9 @@ class User extends Authenticatable
         'name',
          'email',
          'password',
-         'First_name',
-         'last_name',
+         'firstName',
+         'lastName',
+        'Role'
 
     ];
 
@@ -41,7 +42,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'email_verified_at','rememberToken'
     ];
 
     /**

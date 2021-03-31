@@ -29,12 +29,12 @@ class supplierController extends Controller
     public function store(Request $request): JsonResponse
     {
         $New_supplier = new supplier;
-        $New_supplier->address = $request->address;
-        $New_supplier->phoneNumber = $request->phoneNumber;
-        $New_supplier->email = $request->email;
-        $New_supplier->name = $request->name;
+        $New_supplier->address = $request->get("address");
+        $New_supplier->phoneNumber = $request->get("phoneNumber");
+        $New_supplier->email = $request->get("email");
+        $New_supplier->supplierName = $request->get("supplierName");
 
-        $Available = supplier::where('name', "=", $request->input('name'))->first();
+        $Available = supplier::where('supplierName', "=", $request->input('supplierName'))->first();
         if ($Available) {
             return response()->json([
                 "message" => "already in the database",
@@ -58,14 +58,14 @@ class supplierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $supplierName
      * @return JsonResponse
      */
-    public function show( int $id): JsonResponse
+    public function show( $supplierName): JsonResponse
     {
-        $wantedSupplier = supplier::find($id);
+        $wantedSupplier = supplier::find($supplierName);
         if(($wantedSupplier)){
-            return response()->json(["item"=>$wantedSupplier]);
+            return response()->json(["supplier"=>$wantedSupplier]);
         }
         else{
             return response()->json(["message"=>"item not found"],401);
@@ -76,20 +76,21 @@ class supplierController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param $supplierName
      * @return JsonResponse
      */
-    public function update(Request $request, $id): JsonResponse
+    public function update(Request $request, $supplierName): JsonResponse
     {
-        $requestedSupplier = supplier::find($id);
+        $requestedSupplier = supplier::find($supplierName);
         if(!$requestedSupplier){
             return  response()->json(["message"=>" item not found"],401);
         }
         else{
 
-            $requestedSupplier->address= $request->address;
-            $requestedSupplier->phoneNumber = $request->phoneNumber;
-            $requestedSupplier->email = $request->email;
+            $requestedSupplier->address= $request->get("address");
+            $requestedSupplier->phoneNumber = $request->get("phoneNumber");
+            $requestedSupplier->email = $request->get("email");
+            $requestedSupplier->supplierName = $request->get("supplierName");
     }
         try {
             if ($requestedSupplier->save()){
@@ -118,7 +119,7 @@ class supplierController extends Controller
         }
         else{
             $unwantedItem->delete();
-            return response()->json(["message"=>"items deleted successfully"],201);
+            return response()->json(["message"=>"items deleted successfully"],200);
         }
 
     }

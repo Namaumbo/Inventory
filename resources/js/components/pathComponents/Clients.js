@@ -1,10 +1,13 @@
 import React from 'react';
 
+import UsersInnerNav from "./UsersInnerNav";
+
 function Clients(){
     return(
         <div>
-            hello from Clients
+           <div style={{maxWidth:"2000px"}}><UsersInnerNav /></div>
         </div>
+
     )
 }
 export default Clients;

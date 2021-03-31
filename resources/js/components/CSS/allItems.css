@@ -1,0 +1,14 @@
+.info {
+    border:1px solid black;
+    padding:20px;
+    border-radius:5px;
+
+}
+.info2{
+    border:1px solid black;
+    padding:20px;
+    border-radius:5px;
+    font-size:20px;
+    font-weight:bolder
+
+}

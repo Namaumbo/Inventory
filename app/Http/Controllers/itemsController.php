@@ -36,9 +36,9 @@ class itemsController extends Controller
         $New_Item-> color= $request->get("color");
         $New_Item-> vat= $request->get("vat");
         $New_Item->  description= $request->get("description");
-        $New_Item->brandId= $request-> get("brandId");
-        $New_Item->categoryId= $request-> get("categoryId");
-        $New_Item->supplierId= $request-> get("supplierId");
+        $New_Item->brandName = $request-> get("brandName");
+        $New_Item->categoryName= $request-> get("categoryName");
+        $New_Item->supplierName = $request-> get("supplierName");
 // checking if the product is in the database
         $Available  = item::where('name',"=", $request->input('name'))->first();
         if($Available){
@@ -103,9 +103,9 @@ else {
             $requestedItem-> vat= $request->vat;
             $requestedItem->  description= $request-> description;
             $requestedItem->stockable= $request-> stockable;
-            $requestedItem->brand_id= $request-> brand_id;
-            $requestedItem->category_id= $request-> category_id;
-            $requestedItem->supplier_id= $request-> supplier_id;
+            $requestedItem->brandName= $request-> brandName;
+            $requestedItem->categoryName= $request-> categoryName;
+            $requestedItem->supplierName= $request-> supplierName;
         }
             try {
                 if ($requestedItem->save()){

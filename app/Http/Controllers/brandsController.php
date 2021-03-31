@@ -29,8 +29,8 @@ class brandsController extends Controller
     public function store(Request $request): JsonResponse
     {
         $New_brand = new brands();
-        $New_brand->brandName = $request->brandName;
-        $New_brand->address = $request->address;
+        $New_brand->brandName = $request->get("brandName");
+        $New_brand->address = $request->get("address");
 
         $Available  = brands::where('brandName',"=", $request->input('brandName'))->first();
         if($Available){
@@ -56,12 +56,12 @@ class brandsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $brandName
      * @return JsonResponse
      */
-    public function show(int $id): JsonResponse
+    public function show($brandName): JsonResponse
     {
-        $wantedBrand = brands::find($id);
+        $wantedBrand = brands::find($brandName);
         if(($wantedBrand)){
             return response()->json(["brand"=>$wantedBrand]);
 
@@ -76,19 +76,19 @@ class brandsController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param $brandName
      * @return JsonResponse
      */
-    public function update(Request $request, $id): JsonResponse
+    public function update(Request $request, $brandName): JsonResponse
     {
-        $requestedBrand = brands::find($id);
+        $requestedBrand = brands::find($brandName);
         if(!$requestedBrand){
             return  response()->json(["message"=>" item not found"],401);
         }
         else{
 
-            $requestedBrand->brandName = $request->name;
-            $requestedBrand->address = $request->address;
+            $requestedBrand->brandName = $request->get("brandName");
+            $requestedBrand->address = $request->get("address");
 
         }
         try {
@@ -105,12 +105,12 @@ class brandsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param $brandName
      * @return JsonResponse
      */
-    public function destroy( int $id): JsonResponse
+    public function destroy($brandName): JsonResponse
     {
-        $unwantedBrand = brands::find($id);
+        $unwantedBrand = brands::find($brandName);
         if(is_null($unwantedBrand)){
             return  response()->json(["message"=>"not found"],401);
         }

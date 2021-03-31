@@ -13,14 +13,15 @@ use \Illuminate\Database\Eloquent\Relations\HasOne;
  * @property mixed vat
  * @property mixed description
  * @property mixed stockable
+ * @property mixed brandName
+ * @property mixed categoryName
+ * @property mixed supplierName
  */
 class item extends Model
 {
     protected $guarded =[
         'id',
-        'branchId',
-        'supplierId',
-        'categoryId',
+
     ];
     protected $fillable=[
         'description',
@@ -28,38 +29,29 @@ class item extends Model
         'price',
         'quantity',
         'name',
-
-        ];
+        'brandName',
+        'supplierName',
+        'categoryName'
+    ];
 
     protected $casts=[
         'quantity' => 'integer',
         'price' => 'double',
         'vat'=>'double',
             ];
-    /**
-     * @var mixed
-     */
-    private $brandId;
-    /**
-     * @var mixed
-     */
-    private $categoryId;
-    /**
-     * @var mixed
-     */
-    private $supplierId;
 
 
-    public function brand(): HasOne
+
+    public function brand(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasOne(brands::class);
+        return $this->hasMany(brands::class);
     }
-    public function supplier(): HasOne
+    public function supplier(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasOne(supplier::class);
+        return $this->hasMany(supplier::class);
     }
-    public function category(): HasOne
+    public function category(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasOne(category::class);
+        return $this->hasMany(category::class);
     }
 }

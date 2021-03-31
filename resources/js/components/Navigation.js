@@ -7,18 +7,28 @@ import Clients from "./pathComponents/Clients";
 import Statistics from "./pathComponents/Statistics";
 import SalesOrder from "./pathComponents/SalesOrder";
 import Items from "./pathComponents/Items";
+import ReactDOM from "react-dom";
+import App from "./App";
 
 function Navigation(){
+    const login = localStorage.getItem("isLoggedIn");
+    localStorage.clear()
+    if(!login){
+        window.location.replace('/')
+   // history.push('/');
+    }
+
+
     return (
 <>
     <Router>
             <div className="ina">
-            <div>
+            <div style={{position:"fixed"}}>
             <nav className="cover">
                 <img src={logo} width="160" height="40" alt='logo'/>
                 <br /><br />
                 <ul className="nav flex-column nav-pills">
-                <li className="nav-item "><Link to="/" className="nav-link active"  data-toggle="" >
+                <li className="nav-item "><Link to="/" className="links"  data-toggle="" >
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="24"
                          height="24"
@@ -34,7 +44,7 @@ function Navigation(){
                      {" "}DASHBOARD
 
                 </Link></li>
-                <li className="nav-item"><Link to="/item" className="nav-link" data-toggle="">
+                <li className="nav-item"><Link to="/item" className="links">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="24"
                          height="24"
@@ -50,7 +60,7 @@ function Navigation(){
                     </svg>
                     {" "}ITEMS
                 </Link></li>
-                <li className="nav-item"><Link to="/client" className="nav-link"  data-toggle="" >
+                <li className="nav-item"><Link to="/client" className="links" data-toggle="" >
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="24"
                          height="24"
@@ -64,7 +74,7 @@ function Navigation(){
                     </svg>
                     {" "} CLIENTS
                 </Link></li>
-                <li className="nav-item"><Link to="/salesOrder" className="nav-link"  data-toggle="" >
+                <li className="nav-item"><Link to="/salesOrder" className="links"  data-toggle="" >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24" height="24"
@@ -80,7 +90,7 @@ function Navigation(){
                     </svg>
                     {""}SALES ORDER
                 </Link></li>
-                <li className="nav-item"><Link to="/statistic" className="nav-link"   data-toggle="" >
+                <li className="nav-item"><Link to="/statistic" className="links"   data-toggle="" >
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="24" height="24"
                          fill="currentColor"
@@ -109,3 +119,7 @@ function Navigation(){
     );
 }
 export default Navigation;
+
+if (document.getElementById('dashboard')) {
+    ReactDOM.render(<Navigation />, document.getElementById('dashboard'));
+}

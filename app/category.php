@@ -13,9 +13,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class category extends Model
 {
-  protected $hidden=[
-      'id'
-  ];
+ protected $primaryKey = 'categoryName';
+ public $incrementing = false;
+
 
     protected $fillable=[
         "description",

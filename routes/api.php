@@ -23,3 +23,5 @@ Route::apiResource('users','userController');
 Route::apiResource('categories','categoryController');
 Route::apiResource('suppliers','supplierController');
 Route::apiResource('brands','brandsController');
+Route::post("user_login", "userController@userLogin");
+Route::get("user/{email}", "userController@userDetail");
